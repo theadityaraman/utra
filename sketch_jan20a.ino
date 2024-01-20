@@ -1,35 +1,82 @@
-int right_wheel_1 = 2;
-int right_wheel_2 = 3;
-int right_wheel_power = 6;
-
-int left_wheel_1 = 4;
-int left_wheel_2 = 7;
-int left_wheel_power = 5;
+// Motor control pins
+int motor1Pin1 = 2;  // Motor 1 control pin 1
+int motor1Pin2 = 3;  // Motor 1 control pin 2
+int motor2Pin1 = 4;  // Motor 2 control pin 1
+int motor2Pin2 = 5;  // Motor 2 control pin 2
 
 void setup() {
-  pinMode(right_wheel_1, OUTPUT);
-  pinMode(right_wheel_2, OUTPUT);
-  pinMode(right_wheel_power, OUTPUT);
-
-  pinMode(left_wheel_1, OUTPUT);
-  pinMode(left_wheel_2, OUTPUT);
-  pinMode(left_wheel_power, OUTPUT);
-
-  analogWrite(left_wheel_power, 0);
-  analogWrite(right_wheel_power, 0);
+  // Set the motor control pins as OUTPUT
+  pinMode(motor1Pin1, OUTPUT);
+  pinMode(motor1Pin2, OUTPUT);
+  pinMode(motor2Pin1, OUTPUT);
+  pinMode(motor2Pin2, OUTPUT);
 }
 
 void loop() {
   // Move forward
-  go_forwards(left_wheel_1, left_wheel_2);
-  go_forwards(right_wheel_1, right_wheel_2);
+  moveForward();
+  delay(2000);
 
-  // Set a constant speed (you can adjust this value)
-  analogWrite(left_wheel_power, 150);
-  analogWrite(right_wheel_power, 150);
+  // Stop
+  stopMotors();
+  delay(1000);
+
+  // Move backward
+  moveBackward();
+  delay(2000);
+
+  // Stop
+  stopMotors();
+  delay(1000);
+
+  // Turn left
+  turnLeft();
+  delay(1000);
+
+  // Stop
+  stopMotors();
+  delay(1000);
+
+  // Turn right
+  turnRight();
+  delay(1000);
+
+  // Stop
+  stopMotors();
+  delay(1000);
 }
 
-void go_forwards(int wheel_input_1, int wheel_input_2) {
-  digitalWrite(wheel_input_1, HIGH);
-  digitalWrite(wheel_input_2, LOW);
+void moveForward() {
+  digitalWrite(motor1Pin1, HIGH);
+  digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, HIGH);
+  digitalWrite(motor2Pin2, LOW);
+}
+
+void moveBackward() {
+  digitalWrite(motor1Pin1, LOW);
+  digitalWrite(motor1Pin2, HIGH);
+  digitalWrite(motor2Pin1, LOW);
+  digitalWrite(motor2Pin2, HIGH);
+}
+
+void turnLeft() {
+  digitalWrite(motor1Pin1, LOW);
+  digitalWrite(motor1Pin2, HIGH);
+  digitalWrite(motor2Pin1, HIGH);
+  digitalWrite(motor2Pin2, LOW);
+}
+
+void turnRight() {
+  digitalWrite(motor1Pin1, HIGH);
+  digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, LOW);
+  digitalWrite(motor2Pin2, HIGH);
+}
+
+void stopMotors() {
+  digitalWrite(motor1Pin1, LOW);
+  digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, LOW);
+  digitalWrite(motor2Pin2, LOW);
 }
