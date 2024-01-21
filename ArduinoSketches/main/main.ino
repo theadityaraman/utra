@@ -66,3 +66,10 @@ void pivotRight(int speed) {
   digitalWrite(IN4, LOW);
   analogWrite(EN_B, speed);
 }
+void stopAll() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
