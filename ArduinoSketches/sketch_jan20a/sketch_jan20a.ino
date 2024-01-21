@@ -60,7 +60,7 @@ void loop() {
     delay(3000);
     go_forward();
   }
-  delay(50); // Wait 50 milliseconds before pinging again
+  delay(100); // Wait 50 milliseconds before pinging again
 }
 
 void go_forward() {
