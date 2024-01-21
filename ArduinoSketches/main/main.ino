@@ -1,11 +1,13 @@
-//Motor Pins
-int EN_A = 9; //Enable pin for first motor
-int IN1 = 5; //control pin for first motor
-int IN2 = 6; //control pin for first motor
+int EN_A = 2; //Enable pin for first motor
+int IN1 = 4; //control pin for first motor
+int IN2 = 8; //control pin for first motor
 int IN3 = 7; //control pin for second motor
-int IN4 = 8; //control pin for second motor
-int EN_B = 10; //Enable pin for second motor
-//Initializing variables to store data
+int IN4 = 11; //control pin for second motor
+int EN_B = 13; //Enable pin for second motor
+
+// ports 3 5 6 9 10 must be used by arm's servos
+// 12 -> ultrasonic sensor
+
 int motor_speed = 255;
 int motor_speed1 = 255;
 
@@ -23,7 +25,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  
 }
 
 
