@@ -13,6 +13,9 @@ const int in4 = 8;
 // Set the speed (0 = off and 255 = max speed)
 const int motorSpeed = 80;
 
+int distance;
+int duration;
+
 // Define the ultrasonic sensor parameters
 #define TRIGGER_PIN 11
 #define ECHO_PIN 12
@@ -43,9 +46,16 @@ void setup() {
 }
 
 void loop() {
-  int distance = sonar.ping_cm();
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
 
-  if (distance >= 0 && distance <= 20) { // If obstacle <= 40 centimeters away
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
+
+  if (distance >= 0 && distance <= 20) { // If obstacle <= 20 centimeters away
     Serial.println("Obstacle detected ahead");
     Serial.println(distance);
     go_backwards();
