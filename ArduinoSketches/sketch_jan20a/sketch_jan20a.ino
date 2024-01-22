@@ -17,8 +17,8 @@ int distance;
 int duration;
 
 // Define the ultrasonic sensor parameters
-#define TRIGGER_PIN 11
-#define ECHO_PIN 12
+#define TRIGGER_PIN 12
+#define ECHO_PIN A1
 #define MAX_DISTANCE 200 // Maximum distance in centimeters
 
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
@@ -54,22 +54,22 @@ void loop() {
 
   duration = pulseIn(echoPin, HIGH);
   distance = duration * 0.034 / 2;
+  Serial.println(distance);
+  // if (distance >= 0 && distance <= 20) { // If obstacle <= 20 centimeters away
+  //   Serial.println("Obstacle detected ahead");
+  //   Serial.println(distance);
+  //   go_backwards();
+  //   delay(2000);
 
-  if (distance >= 0 && distance <= 20) { // If obstacle <= 20 centimeters away
-    Serial.println("Obstacle detected ahead");
-    Serial.println(distance);
-    go_backwards();
-    delay(2000);
-
-    // Go left or right to avoid the obstacle
-    if (random(2) == 0) {
-      go_right();
-    } else {
-      go_left();
-    }
-    delay(3000);
-    go_forward();
-  }
+  //   // Go left or right to avoid the obstacle
+  //   if (random(2) == 0) {
+  //     go_right();
+  //   } else {
+  //     go_left();
+  //   }
+  //   delay(3000);
+  //   go_forward();
+  // }
   delay(100); // Wait 50 milliseconds before pinging again
 }
 
